@@ -242,7 +242,7 @@ export const database = {
         try {
           // applications 테이블에서 직접 데이터 조회
           const { data: appsData, error: appsError } = await supabase
-            .from('applications')
+            .from('campaign_applications')
             .select('*')
             .order('created_at', { ascending: false })
           
@@ -305,7 +305,7 @@ export const database = {
         try {
           // 먼저 기존 applications 테이블 확인 (우선순위)
           const { data: appsData, error: appsError } = await supabase
-            .from('applications')
+            .from('campaign_applications')
             .select('*')
             .eq('user_id', userId)
             .order('created_at', { ascending: false })
@@ -389,7 +389,7 @@ export const database = {
         try {
           // 먼저 applications 테이블 확인 (우선순위)
           const { data: appsData, error: appsError } = await supabase
-            .from('applications')
+            .from('campaign_applications')
             .select('*')
             .eq('campaign_id', campaignId)
             .order('created_at', { ascending: false })
@@ -470,7 +470,7 @@ export const database = {
         console.log('getByUserAndCampaign 호출 - applications 테이블 사용:', { userId, campaignId })
         
         const { data, error } = await supabase
-          .from('applications')
+          .from('campaign_applications')
           .select('*')
           .eq('user_id', userId)
           .eq('campaign_id', campaignId)
@@ -490,7 +490,7 @@ export const database = {
       return safeQuery(async () => {
         console.log('Application 생성 시작 - applications 테이블 사용:', applicationData)
         const { data, error } = await supabase
-          .from('applications')
+          .from('campaign_applications')
           .insert([applicationData])
           .select()
           .single()
@@ -546,7 +546,7 @@ export const database = {
         
         // applications 테이블을 우선 사용 (실제 데이터가 있는 테이블)
         let { data, error } = await supabase
-          .from('applications')
+          .from('campaign_applications')
           .update({
             ...updateData,
             updated_at: new Date().toISOString()
