@@ -1055,7 +1055,7 @@ const MyPageWithWithdrawal = () => {
             <div>
               <h1 className="text-3xl font-bold text-gray-900">{t.title}</h1>
               <p className="mt-2 text-gray-600">
-{language === 'ja' ? `${profile?.name || user?.email}さんのアカウント情報` : `${profile?.name || user?.email}님의 계정 정보`}
+{language === 'zh' ? `${profile?.name || user?.email} 的帳戶資訊` : language === 'ja' ? `${profile?.name || user?.email}さんのアカウント情報` : `${profile?.name || user?.email}님의 계정 정보`}
               </p>
             </div>
             <div className="flex space-x-3">

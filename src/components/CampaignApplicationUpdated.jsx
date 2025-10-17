@@ -983,7 +983,7 @@ const CampaignApplicationUpdated = () => {
                             }))}
                             rows={campaign.question1_type === 'long' ? 5 : 3}
                             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500"
-                            placeholder="Enter your answer..."
+                            placeholder={language === 'zh' ? '請輸入您的答案...' : language === 'ja' ? '回答を入力してください...' : language === 'ko' ? '답변을 입력해주세요...' : 'Enter your answer...'}
                             required
                           />
                         )}
@@ -1029,7 +1029,7 @@ const CampaignApplicationUpdated = () => {
                             }))}
                             rows={campaign.question2_type === 'long' ? 5 : 3}
                             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500"
-                            placeholder="Enter your answer..."
+                            placeholder={language === 'zh' ? '請輸入您的答案...' : language === 'ja' ? '回答を入力してください...' : language === 'ko' ? '답변을 입력해주세요...' : 'Enter your answer...'}
                             required
                           />
                         )}
@@ -1075,7 +1075,7 @@ const CampaignApplicationUpdated = () => {
                             }))}
                             rows={campaign.question3_type === 'long' ? 5 : 3}
                             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
-                            placeholder="Enter your answer..."
+                            placeholder={language === 'zh' ? '請輸入您的答案...' : language === 'ja' ? '回答を入力してください...' : language === 'ko' ? '답변을 입력해주세요...' : 'Enter your answer...'}
                             required
                           />
                         )}
@@ -1121,7 +1121,7 @@ const CampaignApplicationUpdated = () => {
                             }))}
                             rows={campaign.question4_type === 'long' ? 5 : 3}
                             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500"
-                            placeholder="Enter your answer..."
+                            placeholder={language === 'zh' ? '請輸入您的答案...' : language === 'ja' ? '回答を入力してください...' : language === 'ko' ? '답변을 입력해주세요...' : 'Enter your answer...'}
                             required
                           />
                         )}
@@ -1141,7 +1141,7 @@ const CampaignApplicationUpdated = () => {
                   onChange={(e) => setApplicationData(prev => ({ ...prev, additional_info: e.target.value }))}
                   rows={4}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500"
-                  placeholder="Please enter any additional information you would like to share..."
+                  placeholder={language === 'zh' ? '請輸入任何您想分享的附加資訊...' : language === 'ja' ? '共有したい追加情報を入力してください...' : language === 'ko' ? '공유하고 싶은 추가 정보를 입력해주세요...' : 'Please enter any additional information you would like to share...'}
                 />
               </div>
 

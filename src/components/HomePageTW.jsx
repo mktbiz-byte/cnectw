@@ -116,11 +116,8 @@ const HomePageTW = () => {
   }
 
   const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'TWD',
-      minimumFractionDigits: 0
-    }).format(amount)
+    if (!amount) return 'NT$0'
+    return `NT$${amount.toLocaleString('zh-TW')}`
   }
 
   const formatDate = (date) => {
@@ -264,14 +261,14 @@ const HomePageTW = () => {
           <div className="text-center max-w-4xl mx-auto">
             <Badge className="mb-6 bg-gradient-to-r from-red-600 to-amber-600 text-white px-6 py-2 text-sm">
               <Sparkles className="h-4 w-4 mr-2 inline" />
-              Join the Creator Economy
+              加入創作者經濟
             </Badge>
             <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-              Turn Your Influence Into Income
+              將您的影響力轉化為收入
             </h2>
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              Partner with 頂級品牌, create amazing content, and get paid for what you love. 
-              加入數千位創作者 building their careers with CNEC 台灣.
+              與頂級品牌合作，創作精彩內容，並為您熱愛的事物獲得報酬。
+              加入數千位在 CNEC 台灣建立職業生涯的創作者。
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               {!user && (
@@ -281,7 +278,7 @@ const HomePageTW = () => {
                     className="bg-gradient-to-r from-red-600 to-amber-600 text-white hover:from-blue-700 hover:to-purple-700 px-8 py-6 text-lg"
                     onClick={() => navigate('/signup')}
                   >
-                    Start Creating Today
+                    立即開始創作
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                   <Button 
@@ -290,7 +287,7 @@ const HomePageTW = () => {
                     className="border-2 border-red-600 text-red-600 hover:bg-red-50 px-8 py-6 text-lg"
                     onClick={() => document.getElementById('campaigns')?.scrollIntoView({ behavior: 'smooth' })}
                   >
-                    Browse 活動
+                    瀏覽活動
                   </Button>
                 </>
               )}
@@ -310,7 +307,7 @@ const HomePageTW = () => {
               <CardContent className="p-6 text-center">
                 <Users className="h-8 w-8 mx-auto mb-3 text-purple-600" />
                 <div className="text-3xl font-bold text-gray-800">{stats.totalCreators}</div>
-                <div className="text-sm text-gray-600 mt-1">Creators</div>
+                <div className="text-sm text-gray-600 mt-1">創作者</div>
               </CardContent>
             </Card>
             <Card className="bg-white/80 backdrop-blur-sm border-none shadow-lg hover:shadow-xl transition-shadow">
@@ -324,7 +321,7 @@ const HomePageTW = () => {
               <CardContent className="p-6 text-center">
                 <DollarSign className="h-8 w-8 mx-auto mb-3 text-green-600" />
                 <div className="text-3xl font-bold text-gray-800">{formatCurrency(stats.totalRewards)}</div>
-                <div className="text-sm text-gray-600 mt-1">Total Rewards</div>
+                <div className="text-sm text-gray-600 mt-1">總獎勵金</div>
               </CardContent>
             </Card>
           </div>
@@ -335,8 +332,8 @@ const HomePageTW = () => {
       <section id="campaigns" className="py-16 px-4">
         <div className="container mx-auto">
           <div className="text-center mb-12">
-            <h3 className="text-4xl font-bold mb-4 text-gray-800">Featured 活動</h3>
-            <p className="text-xl text-gray-600">Discover exciting brand partnerships 開始賺錢</p>
+            <h3 className="text-4xl font-bold mb-4 text-gray-800">精選活動</h3>
+            <p className="text-xl text-gray-600">探索令人興奮的品牌合作機會，開始賺錢</p>
           </div>
 
           {loading ? (

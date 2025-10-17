@@ -492,15 +492,18 @@ const CampaignCreationWithTranslator = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    보상금액
+                    보상금액 (NT$)
                   </label>
-                  <input
-                    type="number"
-                    value={campaignForm.reward_amount}
-                    onChange={(e) => setCampaignForm({...campaignForm, reward_amount: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="0"
-                  />
+                  <div className="relative">
+                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">NT$</span>
+                    <input
+                      type="number"
+                      value={campaignForm.reward_amount}
+                      onChange={(e) => setCampaignForm({...campaignForm, reward_amount: e.target.value})}
+                      className="w-full pl-12 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="0"
+                    />
+                  </div>
                 </div>
 
                 <div>
