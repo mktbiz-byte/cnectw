@@ -1713,7 +1713,7 @@ const MyPageWithWithdrawal = () => {
                             PayPal
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                            ¥{withdrawal.amount?.toLocaleString() || '0'}
+                            {language === 'zh' ? 'NT$' : '¥'}{withdrawal.amount?.toLocaleString() || '0'}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
                             <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
@@ -1888,13 +1888,13 @@ const MyPageWithWithdrawal = () => {
                   </div>
                 )}
                 
-                {/* 포인트 가치 안내 */}
+                {/* 點數價值說明 */}
                 <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
                   <p className="text-sm text-blue-800 font-medium">
-                    💰 {language === 'ja' ? '1ポイント = 1円です' : '1포인트 = 1엔입니다'}
+                    💰 {language === 'zh' ? '1點數 = 1台幣' : language === 'ja' ? '1ポイント = 1円です' : '1포인트 = 1엔입니다'}
                   </p>
                   <p className="text-xs text-blue-600 mt-1">
-                    {language === 'ja' ? 'PayPalで日本円として出金されます' : 'PayPal로 일본 엔화로 출금됩니다'}
+                    {language === 'zh' ? '透過 PayPal 以台幣提款' : language === 'ja' ? 'PayPalで日本円として出金されます' : 'PayPal로 일본 엔화로 출금됩니다'}
                   </p>
                 </div>
 
@@ -1907,15 +1907,15 @@ const MyPageWithWithdrawal = () => {
                       type="number"
                       value={withdrawForm.amount}
                       onChange={(e) => setWithdrawForm({...withdrawForm, amount: e.target.value})}
-                      placeholder={language === 'ja' ? '出金するポイント数' : '출금할 포인트 수'}
+                      placeholder={language === 'zh' ? '提款點數' : language === 'ja' ? '出金するポイント数' : '출금할 포인트 수'}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
                       max={profile?.points || 0}
                     />
                     <p className="text-sm text-gray-500 mt-1">
-                      {language === 'ja' ? '保有ポイント' : '보유 포인트'}: {profile?.points?.toLocaleString() || 0}P
+                      {language === 'zh' ? '目前點數' : language === 'ja' ? '保有ポイント' : '보유 포인트'}: {profile?.points?.toLocaleString() || 0}P
                       {withdrawForm.amount && (
                         <span className="ml-2 text-green-600 font-medium">
-                          (≈ ¥{parseInt(withdrawForm.amount || 0).toLocaleString()})
+                          (≈ {language === 'zh' ? 'NT$' : '¥'}{parseInt(withdrawForm.amount || 0).toLocaleString()})
                         </span>
                       )}
                     </p>
@@ -1929,7 +1929,7 @@ const MyPageWithWithdrawal = () => {
                       type="email"
                       value={withdrawForm.paypalEmail}
                       onChange={(e) => setWithdrawForm({...withdrawForm, paypalEmail: e.target.value})}
-                      placeholder={language === 'ja' ? 'PayPal アカウントメール' : 'PayPal 계정 이메일'}
+                      placeholder={language === 'zh' ? 'PayPal 帳戶電子郵件' : language === 'ja' ? 'PayPal アカウントメール' : 'PayPal 계정 이메일'}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
                     />
                   </div>
@@ -1942,7 +1942,7 @@ const MyPageWithWithdrawal = () => {
                       type="text"
                       value={withdrawForm.paypalName}
                       onChange={(e) => setWithdrawForm({...withdrawForm, paypalName: e.target.value})}
-                      placeholder={language === 'ja' ? 'PayPal アカウント名（実名）' : 'PayPal 계정명 (실명)'}
+                      placeholder={language === 'zh' ? 'PayPal 帳戶名稱（真實姓名）' : language === 'ja' ? 'PayPal アカウント名（実名）' : 'PayPal 계정명 (실명)'}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
                     />
                   </div>
@@ -1956,7 +1956,7 @@ const MyPageWithWithdrawal = () => {
                       onChange={(e) => setWithdrawForm({...withdrawForm, reason: e.target.value})}
                       rows={3}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                      placeholder={language === 'ja' ? '出金理由（任意）' : '출금 사유 (선택사항)'}
+                      placeholder={language === 'zh' ? '提款原因（選填）' : language === 'ja' ? '出金理由（任意）' : '출금 사유 (선택사항)'}
                     />
                   </div>
                 </div>
