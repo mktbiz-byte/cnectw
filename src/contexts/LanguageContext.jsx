@@ -12,6 +12,63 @@ export const useLanguage = () => {
 
 // 번역 데이터
 const translations = {
+  zh: {
+    // 公用
+    loading: '載入中...',
+    error: '發生錯誤',
+    success: '成功',
+    cancel: '取消',
+    confirm: '確認',
+    save: '儲存',
+    edit: '編輯',
+    delete: '刪除',
+    create: '建立',
+    update: '更新',
+    
+    // 導航
+    home: '首頁',
+    campaigns: '活動',
+    mypage: '我的頁面',
+    login: '登入',
+    register: '註冊',
+    logout: '登出',
+    
+    // 管理員
+    admin: '管理員',
+    dashboard: '控制台',
+    campaignManagement: '活動管理',
+    creatorManagement: '創作者管理',
+    withdrawalManagement: '提款管理',
+    
+    // 活動
+    campaignTitle: '活動標題',
+    brand: '品牌',
+    description: '說明',
+    reward: '獎勵',
+    status: '狀態',
+    active: '活躍',
+    inactive: '非活躍',
+    draft: '草稿',
+    completed: '完成',
+    
+    // 申請
+    apply: '申請',
+    application: '申請',
+    applications: '申請列表',
+    applicant: '申請人',
+    
+    // 統計
+    totalCampaigns: '總活動數',
+    totalApplications: '總申請數',
+    totalUsers: '總用戶數',
+    totalRewards: '總獎勵金額',
+    
+    // 訊息
+    loginRequired: '需要登入',
+    adminRequired: '需要管理員權限',
+    noData: '無資料',
+    loadingFailed: '資料載入失敗'
+  },
   ko: {
     // 공통
     loading: '로딩 중...',
@@ -186,16 +243,21 @@ const translations = {
 }
 
 export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState('en') // US version: Always English
+  const [language, setLanguage] = useState('zh') // Taiwan version: Default Traditional Chinese
 
   useEffect(() => {
-    // US version: Force English only, ignore localStorage
-    setLanguage('en')
-    localStorage.setItem('cnec-language', 'en')
+    // Taiwan version: Load from localStorage or default to zh
+    const savedLanguage = localStorage.getItem('cnec-language')
+    if (savedLanguage && ['ko', 'ja', 'en', 'zh'].includes(savedLanguage)) {
+      setLanguage(savedLanguage)
+    } else {
+      setLanguage('zh')
+      localStorage.setItem('cnec-language', 'zh')
+    }
   }, [])
 
   const changeLanguage = (newLanguage) => {
-    if (['ko', 'ja', 'en'].includes(newLanguage)) {
+    if (['ko', 'ja', 'en', 'zh'].includes(newLanguage)) {
       setLanguage(newLanguage)
       localStorage.setItem('cnec-language', newLanguage)
     }
@@ -211,7 +273,8 @@ export const LanguageProvider = ({ children }) => {
     t,
     isKorean: language === 'ko',
     isJapanese: language === 'ja',
-    isEnglish: language === 'en'
+    isEnglish: language === 'en',
+    isChinese: language === 'zh'
   }
 
   return (
@@ -220,3 +283,4 @@ export const LanguageProvider = ({ children }) => {
     </LanguageContext.Provider>
   )
 }
+
