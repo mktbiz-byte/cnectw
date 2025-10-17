@@ -243,17 +243,12 @@ const translations = {
 }
 
 export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState('zh') // Taiwan version: Default Traditional Chinese
+  const [language, setLanguage] = useState('zh') // Taiwan version: Always Traditional Chinese
 
   useEffect(() => {
-    // Taiwan version: Load from localStorage or default to zh
-    const savedLanguage = localStorage.getItem('cnec-language')
-    if (savedLanguage && ['ko', 'ja', 'en', 'zh'].includes(savedLanguage)) {
-      setLanguage(savedLanguage)
-    } else {
-      setLanguage('zh')
-      localStorage.setItem('cnec-language', 'zh')
-    }
+    // Taiwan version: Force Traditional Chinese only
+    setLanguage('zh')
+    localStorage.setItem('cnec-language', 'zh')
   }, [])
 
   const changeLanguage = (newLanguage) => {
