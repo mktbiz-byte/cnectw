@@ -474,15 +474,16 @@ export const database = {
           .select('*')
           .eq('user_id', userId)
           .eq('campaign_id', campaignId)
-          .single()
+          .limit(1)
         
-        if (error && error.code !== 'PGRST116') {
+        if (error) {
           console.error('getByUserAndCampaign 오류:', error)
           return null
         }
         
-        console.log('기존 신청서 조회 결과:', data)
-        return data
+        const result = data && data.length > 0 ? data[0] : null
+        console.log('기존 신청서 조회 결과:', result)
+        return result
       })
     },
 
