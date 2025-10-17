@@ -372,27 +372,31 @@ const CampaignApplicationUpdated = () => {
       setSubmitting(true)
       setError('')
 
-      // 申請データの準備 - applicationsテーブル用の構造に合わせる
+      // 申請データの準備 - campaign_applicationsテーブル用の構造に合わせる
       const submissionData = {
         user_id: user.id,
         campaign_id: campaignId,
-        applicant_name: applicationData.applicant_name,
-        age: parseInt(applicationData.age) || null,
-        skin_type: applicationData.skin_type,
-        postal_code: applicationData.postal_code,
-        address: applicationData.address,
-        phone_number: applicationData.phone_number,
-        instagram_url: applicationData.instagram_url,
-        youtube_url: applicationData.youtube_url || null,
-        tiktok_url: applicationData.tiktok_url || null,
-        answer_1: applicationData.answer_1 || null,
-        answer_2: applicationData.answer_2 || null,
-        answer_3: applicationData.answer_3 || null,
-        answer_4: applicationData.answer_4 || null,
-        additional_info: applicationData.additional_info || null,
-        offline_visit_available: applicationData.offline_visit_available || false,
-        offline_visit_notes: applicationData.offline_visit_notes || null,
         status: 'pending',
+        application_data: {
+          applicant_name: applicationData.applicant_name,
+          age: parseInt(applicationData.age) || null,
+          skin_type: applicationData.skin_type,
+          postal_code: applicationData.postal_code,
+          address: applicationData.address,
+          phone_number: applicationData.phone_number,
+          instagram_url: applicationData.instagram_url,
+          youtube_url: applicationData.youtube_url || null,
+          tiktok_url: applicationData.tiktok_url || null,
+          answer_1: applicationData.answer_1 || null,
+          answer_2: applicationData.answer_2 || null,
+          answer_3: applicationData.answer_3 || null,
+          answer_4: applicationData.answer_4 || null,
+          additional_info: applicationData.additional_info || null,
+          offline_visit_available: applicationData.offline_visit_available || false,
+          offline_visit_notes: applicationData.offline_visit_notes || null
+        },
+        platform_region: 'tw',
+        submitted_at: new Date().toISOString(),
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString()
       }
@@ -430,8 +434,8 @@ const CampaignApplicationUpdated = () => {
   }
 
   const formatCurrency = (amount) => {
-    if (!amount) return '$0'
-    return `$${amount.toLocaleString()}`
+    if (!amount) return 'NT$0'
+    return `NT$${amount.toLocaleString('zh-TW')}`
   }
 
   if (loading) {
